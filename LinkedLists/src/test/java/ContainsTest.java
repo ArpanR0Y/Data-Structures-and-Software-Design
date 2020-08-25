@@ -39,6 +39,30 @@ public class ContainsTest {
   }
 
   @Test
+  public void testContainsEqual() {
+    LinkedList var1 = new LinkedList();
+    LinkedList var2 = new LinkedList();
+    var1.add(4);
+    var1.addLast(8);
+    var1.addLast(3);
+    var1.addLast(12);
+    var1.addLast(6);
+    var2.add(4);
+    var2.addLast(8);
+    var2.addLast(3);
+    var2.addLast(12);
+    var2.addLast(6);
+
+    try {
+      boolean var3 = LinkedListUtils.containsSubsequence(var1, var2);
+      Assert.assertTrue("containsSubsequence returns true when first LinkedList contains all values of second list", var3);
+    } catch (Exception var4) {
+      Assert.fail("containsSubsequence throws " + var4 + " when first LinkedList contains all values of second list");
+    }
+
+  }
+
+  @Test
   public void testContainsFront() {
     LinkedList var1 = new LinkedList();
     LinkedList var2 = new LinkedList();
