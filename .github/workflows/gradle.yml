@@ -44,7 +44,7 @@ jobs:
       run: ./gradlew test
       working-directory: ./QueuesAndStacks
       
-   test-SentimentAnalyzer:
+  test-SentimentAnalyzer:
 
     runs-on: windows-latest
 
