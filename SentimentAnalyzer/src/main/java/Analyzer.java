@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -53,15 +54,49 @@ public class Analyzer {
     return sentences;
   }
 
-  /*
-   * Implement this method in Part 2
+  /**
+   * This method finds all of the individual tokens/words in the text field of each Sentence in the
+   * List and creates Word objects for each distinct word. The Word objects is kept track of by the
+   * number of occurrences of that word in all Sentences, and the total cumulative score of all
+   * Sentences in which it appears. This method then returns a Set of those Word objects.
+   * <p>
+   * If the input List of Sentences is null or is empty, the allWords method returns an empty Set.
+   * <p>
+   * If a Sentence object in the input List is null, this method ignores it and process the non-null
+   * Sentences.
+   *
+   * @param sentences list of all the sentences from the dataset.
+   * @return
    */
   public static Set<Word> allWords(List<Sentence> sentences) {
+    Set<Word> words = new HashSet<>();
+    String regex = "^[a-zA-Z]+";
+    Pattern pattern = Pattern.compile(regex);
 
-    /* IMPLEMENT THIS METHOD! */
+    if (sentences != null) {
+      for (Sentence sentence : sentences) {
+        if (sentence != null) {
 
-    return null; // this line is here only so this code will compile if you don't modify it
+          String[] token = sentence.getText().split("\\s");
 
+          for (String word : token) {
+
+            Matcher matcher = pattern.matcher(word);
+
+            if (matcher.find()) {
+
+              String validWord = matcher.group().trim().toLowerCase();
+              Word newWord = new Word(validWord);
+              newWord.increaseTotal(sentence.getScore());
+
+              words.add(newWord);
+            }
+          }
+        }
+      }
+    }
+
+    return words;
   }
 
   /*
