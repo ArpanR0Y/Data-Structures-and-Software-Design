@@ -53,13 +53,13 @@ public class ReadFileTest {
 
   @Test
   public void testTextOneSentence() {
-    File var1 = new File("./test1.txt");
+    File var1 = new File(DIRECTORY + "\\test1.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test1.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test1.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test1.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with one sentence");
       }
@@ -84,13 +84,13 @@ public class ReadFileTest {
 
   @Test
   public void testScoreOneSentence() {
-    File var1 = new File("./test2.txt");
+    File var1 = new File(DIRECTORY + "\\test2.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test2.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test2.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test2.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with one sentence");
       }
@@ -115,13 +115,13 @@ public class ReadFileTest {
 
   @Test
   public void testMultipleSentencesPositiveScores() {
-    File var1 = new File("./test3.txt");
+    File var1 = new File(DIRECTORY + "\\test3.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test3.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test3.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test3.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with multiple sentences");
       }
@@ -160,13 +160,13 @@ public class ReadFileTest {
 
   @Test
   public void testMultipleSentencesNegativeScores() {
-    File var1 = new File("./test4.txt");
+    File var1 = new File(DIRECTORY + "\\test4.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test4.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test4.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test4.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with multiple sentences");
       }
@@ -198,13 +198,13 @@ public class ReadFileTest {
 
   @Test
   public void testIgnoreInvalidSentenceWithNoScore() {
-    File var1 = new File("./test5.txt");
+    File var1 = new File(DIRECTORY + "\\test5.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test5.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test5.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test5.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with invalid sentences that contain no score");
       }
@@ -236,13 +236,13 @@ public class ReadFileTest {
 
   @Test
   public void testIgnoreInvalidSentenceWithNoText() {
-    File var1 = new File("./test6.txt");
+    File var1 = new File(DIRECTORY + "\\test6.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test6.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test6.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test6.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with invalid sentences that contain no text");
       }
@@ -274,13 +274,13 @@ public class ReadFileTest {
 
   @Test
   public void testIgnoreInvalidSentenceWithScoreOutsideRange() {
-    File var1 = new File("./test7.txt");
+    File var1 = new File(DIRECTORY + "\\test7.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test7.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test7.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test7.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with sentences that have score outside valid range");
       }
@@ -312,13 +312,13 @@ public class ReadFileTest {
 
   @Test
   public void testIgnoreInvalidSentenceWithScoreNotAnInteger() {
-    File var1 = new File("./test8.txt");
+    File var1 = new File(DIRECTORY + "\\test8.txt");
     if (!var1.exists()) {
       Assert.fail("Could not run test for readFile: be sure that test8.txt is in your project root directory or the directory where you started Java.");
     }
 
     try {
-      List var2 = Analyzer.readFile("./test8.txt");
+      List var2 = Analyzer.readFile(DIRECTORY + "\\test8.txt");
       if (var2 == null) {
         Assert.fail("readFile returns null when processing file with sentences that have score that is not an integer");
       }
