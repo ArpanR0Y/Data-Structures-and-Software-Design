@@ -66,7 +66,7 @@ public class Analyzer {
    * Sentences.
    *
    * @param sentences list of all the sentences from the dataset.
-   * @return
+   * @return set of Word objects
    */
   public static Set<Word> allWords(List<Sentence> sentences) {
     Set<Word> words = new HashSet<>();
