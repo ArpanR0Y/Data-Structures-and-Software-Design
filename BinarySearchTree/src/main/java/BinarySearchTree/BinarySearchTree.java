@@ -117,13 +117,12 @@ public class BinarySearchTree<E extends Comparable<E>> {
   }
 
 
-  /*********************************************
-   *
-   * IMPLEMENT THE METHODS BELOW!
-   *
-   *********************************************/
-
-  // Method #1.
+  /**
+   * Method #1.
+   * <p>
+   * Given a value that is stored in the BST, it returns the corresponding Node that holds it. If
+   * the value does not exist in this BST, this method should return null.
+   */
   public Node findNode(E val) {
     if (val != null && this.contains(val)) {
       return findNode(this.root, val);
@@ -142,7 +141,17 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
   }
 
-  // Method #2.
+  /**
+   * Method #2.
+   * <p>
+   * Given a value, this method should return the “depth” of its Node, which is the number of
+   * ancestors between that node and the root, including the root but not the node itself.
+   * <p>
+   * The depth of the root is defined to be 0; the depth of its two children (if any) is defined to
+   * be 1; the depth of the root’s grandchildren (if any) is defined to be 2; and so on.
+   * <p>
+   * If the value is null or does not exist in this BST, this method should return -1.
+   */
   public int depth(E val) {
     if (val != null && this.contains(val)) {
       return depth(this.root, val, 0);
@@ -163,7 +172,17 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
   }
 
-  // Method #3.
+  /**
+   * Method #3.
+   * <p>
+   * Given a value, this method should return the “height” of its Node, which is the greatest number
+   * of nodes between that node and any descendant node that is a leaf, including the leaf but not
+   * the node itself.
+   * <p>
+   * The height of a leaf node (i.e., one which has no children) is defined to be 0.
+   * <p>
+   * If the input value is null or does not exist in this BST, this method should return -1.
+   */
   public int height(E val) {
     if (val != null && this.contains(val)) {
       return maxDepth(this.findNode(val)) - 1;
@@ -173,35 +192,73 @@ public class BinarySearchTree<E extends Comparable<E>> {
   }
 
   protected int maxDepth(Node n) {
-    if (n==null) {
-      return(0);
-    }
-    else {
+    if (n == null) {
+      return (0);
+    } else {
       int lDepth = maxDepth(n.leftChild);
       int rDepth = maxDepth(n.rightChild);
 
       // use the larger + 1
-      return(Math.max(lDepth, rDepth) + 1);
+      return (Math.max(lDepth, rDepth) + 1);
     }
   }
 
 
-  // Method #4.
+  /**
+   * Method #4.
+   * <p>
+   * Given a Node, return true if the absolute value of the difference in heights of its left and
+   * right children is 0 or 1, and return false otherwise.
+   * <p>
+   * If the Node is null or does not exist in this BST, this method should return false.
+   */
   public boolean isBalanced(Node n) {
+    if (n != null && this.contains(n.value)) {
+      return this.heightDiff(n) == 0 || this.heightDiff(n) == 1;
+    }
 
-    /* IMPLEMENT THIS METHOD! */
-
-    return true; // this line is here only so this code will compile if you don't modify it
-
+    return false;
   }
 
-  // Method #5. .
+  protected int heightDiff(Node n) {
+    int lDepth = maxDepth(n.leftChild);
+    int rDepth = maxDepth(n.rightChild);
+
+    return Math.abs(lDepth - rDepth);
+  }
+
+  /**
+   * Method #5.
+   * <p>
+   * returns true if isBalanced(Node) returns true for all Nodes in the tree.
+   * <p>
+   * a tree with root n is balanced if:
+   * n is balanced &&
+   * left subtree of n is balanced &&
+   * right subtree of n is balanced
+   * <p>
+   * This method then allows the user of the BST to determine whether the BST is balanced. Note that
+   * the root being balanced does not imply that the entire tree is balanced
+   */
   public boolean isBalanced() {
-
-    /* IMPLEMENT THIS METHOD! */
-
-    return false; // this line is here only so this code will compile if you don't modify it
-
+    return this.areAllBalanced(root);
   }
 
+  protected boolean areAllBalanced(Node n) {
+    if (n == null) {
+      return false;
+    }
+
+    boolean result = isBalanced(n);
+
+    if (n.leftChild != null) {
+      result = result && areAllBalanced(n.leftChild);
+    }
+
+    if (n.rightChild != null) {
+      result = result && areAllBalanced(n.rightChild);
+    }
+
+    return result;
+  }
 }
