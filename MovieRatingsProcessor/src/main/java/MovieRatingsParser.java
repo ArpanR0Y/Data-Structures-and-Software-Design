@@ -5,10 +5,36 @@ import java.util.TreeMap;
 public class MovieRatingsParser {
 
 	public static TreeMap<String, PriorityQueue<Integer>> parseMovieRatings(List<UserMovieRating> allUsersRatings) {
-		
-		/* IMPLEMENT THIS METHOD! */
-		
-		return null; // this line is here only so this code will compile if you don't modify it
+
+	  TreeMap<String, PriorityQueue<Integer>> treeMap = new TreeMap<>();
+
+	  if (allUsersRatings == null) {
+	    return treeMap;
+    }
+
+		for (UserMovieRating userMovieRating : allUsersRatings) {
+
+		  if (validUserRating(userMovieRating)) {
+		    String movie = userMovieRating.getMovie().toLowerCase();
+		    int rating = userMovieRating.getUserRating();
+
+        PriorityQueue<Integer> queue;
+        if (treeMap.containsKey(movie)) {
+          queue = treeMap.get(movie);
+        } else {
+          queue = new PriorityQueue<>();
+        }
+        queue.add(rating);
+        treeMap.put(movie, queue);
+      }
+    }
+
+		return treeMap;
 	}
+
+	private static boolean validUserRating(UserMovieRating userMovieRating) {
+	  return userMovieRating != null && userMovieRating.getMovie() != null &&
+        !userMovieRating.getMovie().isEmpty() && userMovieRating.getUserRating() >= 0;
+  }
 
 }
