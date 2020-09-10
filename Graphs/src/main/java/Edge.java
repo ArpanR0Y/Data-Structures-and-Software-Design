@@ -1,6 +1,3 @@
-
-
-
 public class Edge {
 	private final Node source;
 	private final Node destination;

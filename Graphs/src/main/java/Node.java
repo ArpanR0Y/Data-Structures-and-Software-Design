@@ -1,6 +1,3 @@
-
-
-
 public class Node {
 	protected String element;
 	
