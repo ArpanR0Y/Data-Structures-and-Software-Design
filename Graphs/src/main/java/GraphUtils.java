@@ -1,12 +1,6 @@
 import java.util.List;
 import java.util.Set;
 
-/*
- * SD2x Homework #6
- * Implement the methods below according to the specification in the assignment description.
- * Please be sure not to change the signature of any of the methods!
- */
-
 public class GraphUtils {
 
 	public static int minDistance(Graph graph, String src, String dest) {
