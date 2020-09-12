@@ -53,9 +53,6 @@ public class BreadthFirstSearch {
    * we are traversing, therefore, when the destination node is found the min distance + 1 is returned.
    */
   public int getMinDistance(Node start, String elementToFind) {
-    if (!graph.containsNode(start)) {
-      return -1;
-    }
     if (start.getElement().equals(elementToFind)) {
       return 0;
     }
@@ -87,4 +84,33 @@ public class BreadthFirstSearch {
     return -1;
   }
 
+  public Set<String> getNodesWithinDistance (Graph graph, String src, int distance) {
+    Set<String> nodes = new HashSet<>();
+    Node start = graph.getNode(src);
+    Queue<Node> toExplore = new LinkedList<>();
+    marked.add(start);
+    toExplore.add(start);
+    int currentNodeLevel = 0;
+    int nodesToExploreInThisLevel = 1;
+    while (!toExplore.isEmpty()) {
+      Node current = toExplore.remove();
+      nodesToExploreInThisLevel--;
+
+      int nodesToExploreInNextLevel = 0;
+      for (Node neighbor : graph.getNodeNeighbors(current)) {
+        if (!marked.contains(neighbor) && currentNodeLevel < distance) {
+          marked.add(neighbor);
+          toExplore.add(neighbor);
+          nodes.add(neighbor.getElement());
+          nodesToExploreInNextLevel++;
+        }
+      }
+      if(nodesToExploreInThisLevel == 0) {
+        currentNodeLevel++;
+      }
+      nodesToExploreInThisLevel = nodesToExploreInNextLevel;
+  }
+    return nodes;
+  }
 }
+

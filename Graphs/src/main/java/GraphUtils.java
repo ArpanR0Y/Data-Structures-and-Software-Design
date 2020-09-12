@@ -14,10 +14,13 @@ public class GraphUtils {
 	}
 
 	public static Set<String> nodesWithinDistance(Graph graph, String src, int distance) {
+    if (isInValid(graph, src, distance)) {
+      return null;
+    }
 
-		/* IMPLEMENT THIS METHOD! */
-		
-		return null; // this line is here only so this code will compile if you don't modify it
+    BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(graph);
+
+		return breadthFirstSearch.getNodesWithinDistance(graph, src, distance);
 	}
 
 
@@ -32,6 +35,11 @@ public class GraphUtils {
 	  return graph == null || src == null || dest == null ||
         !graph.containsNode(graph.getNode(src)) ||
         !graph.containsNode(graph.getNode(dest));
+  }
+
+  private static boolean isInValid(Graph graph, String src, int distance) {
+    return graph == null || src == null || distance < 1 ||
+        !graph.containsNode(graph.getNode(src));
   }
 	
 }
