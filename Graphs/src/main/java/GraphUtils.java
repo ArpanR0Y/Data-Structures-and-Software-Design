@@ -4,12 +4,14 @@ import java.util.Set;
 public class GraphUtils {
 
 	public static int minDistance(Graph graph, String src, String dest) {
+	  if (isInValid(graph, src, dest)) {
+	    return -1;
+    }
 
-		/* IMPLEMENT THIS METHOD! */
-		
-		return -2; // this line is here only so this code will compile if you don't modify it
+	  BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(graph);
+
+		return breadthFirstSearch.getMinDistance(graph.getNode(src), dest);
 	}
-	
 
 	public static Set<String> nodesWithinDistance(Graph graph, String src, int distance) {
 
@@ -25,5 +27,11 @@ public class GraphUtils {
 		
 		return true; // this line is here only so this code will compile if you don't modify it
 	}
+
+	private static boolean isInValid(Graph graph, String src, String dest) {
+	  return graph == null || src == null || dest == null ||
+        !graph.containsNode(graph.getNode(src)) ||
+        !graph.containsNode(graph.getNode(dest));
+  }
 	
 }
