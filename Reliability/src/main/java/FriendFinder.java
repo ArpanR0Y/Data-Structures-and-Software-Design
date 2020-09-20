@@ -20,45 +20,59 @@ public class FriendFinder {
 	
 	
 	public Set<String> findClassmates(Student theStudent) {
-		
-		String name = theStudent.getName();
-		
-		// find the classes that this student is taking
-		List<String> myClasses = classesDataSource.getClasses(name);
-		
-		Set<String> classmates = new HashSet<>();
-		
-		// use the classes to find the names of the students
-		for (String myClass : myClasses) {
-			// list all the students in the class
-			List<Student> students = studentsDataSource.getStudents(myClass);
-			
-			for (Student student : students) {
-				
-				// find the other classes that they're taking
-				List<String> theirClasses = classesDataSource.getClasses(student.getName());
-			
-				// see if all of the classes that they're taking are the same as the ones this student is taking
-				boolean same = true;
-				for (String c : myClasses) {
-					
-					if (!theirClasses.contains(c)) {
-						same = false;
-						break;
-					}
-				}
-				if (same) {
-					if (!student.getName().equals(name) && !classmates.contains(student.getName()))
-						classmates.add(student.getName());
-				}
-			}
 
-		}
-				
-		if (classmates.isEmpty()) { 
-			return null;
-		}
-		else return classmates;
+	  if (theStudent == null || theStudent.name == null) {
+	    throw new IllegalArgumentException();
+    }
+
+		String name = theStudent.getName();
+
+	  try {
+      // find the classes that this student is taking
+      if (classesDataSource == null) {
+        throw new IllegalStateException();
+      }
+      if (studentsDataSource == null) {
+        throw new IllegalStateException();
+      }
+      List<String> myClasses = classesDataSource.getClasses(name);
+
+      Set<String> classmates = new HashSet<>();
+
+      // use the classes to find the names of the students
+      for (String myClass : myClasses) {
+        // list all the students in the class
+        List<Student> students = studentsDataSource.getStudents(myClass);
+
+        for (Student student : students) {
+
+          // find the other classes that they're taking
+          List<String> theirClasses = classesDataSource.getClasses(student.getName());
+
+          // see if all of the classes that they're taking are the same as the ones this student is taking
+          boolean same = true;
+          for (String c : myClasses) {
+
+            if (!theirClasses.contains(c)) {
+              same = false;
+              break;
+            }
+          }
+          if (same) {
+            if (!student.getName().equals(name) && !classmates.contains(student.getName()))
+              classmates.add(student.getName());
+          }
+        }
+
+      }
+
+      if (classmates.isEmpty()) {
+        return null;
+      }
+      else return classmates;
+    } catch (NullPointerException ignored) {}
+
+	  return null;
 	}
 	
 
