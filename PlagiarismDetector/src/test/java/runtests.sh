@@ -49,3 +49,11 @@ java PrintTime new.txt
 
 echo "Comparing outputs and execution times"
 java Compare new.txt base.txt output.txt
+
+echo "Post run clean up"
+rm base.txt
+rm new.txt
+rm output.txt
+rm time.txt
+rm PlagiarismDetector.class
+rm PlagiarismDetector.java
