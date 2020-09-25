@@ -10,6 +10,9 @@ The program you will improve detects common phrases of size windowSize in a corp
 then report pairs of documents for which the number of common phrases is greater than some threshold, 
 sorted by the number of common phrases.
 
+This is a modified version of the problem originally used at the University of Chicago and presented as 
+a Nifty Assignment at SIGCSE 2008 (http://nifty.stanford.edu/2008/franke-catch-plagiarists/)
+
 ### Implementation
 
 The detectPlagiarism method takes the name of the directory containing the corpus of documents, as 
