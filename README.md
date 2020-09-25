@@ -8,4 +8,4 @@ Along with using the right Data Structure it is important to know how to write h
 
 ### Final Project
 
-Plagiarism Detection [Plagiarism Detection](https://github.com/ArpanR0Y/Data-Structures-and-Software-Design/tree/master/PlagiarismDetector)
+[Plagiarism Detection](https://github.com/ArpanR0Y/Data-Structures-and-Software-Design/tree/master/PlagiarismDetector)
