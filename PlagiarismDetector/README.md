@@ -6,9 +6,9 @@ Plagiarism detection is a very difficult problem to solve, but a simple approach
 common words and phrases between documents. If two (or more) documents contain many of the same phrases, 
 then there is a good possibility that one author copied from the other.
 
-The program you will improve detects common phrases of size windowSize in a corpus of documents, and 
-then report pairs of documents for which the number of common phrases is greater than some threshold, 
-sorted by the number of common phrases.
+The program detects common phrases of size windowSize in a corpus of documents, and then reports pairs of 
+documents for which the number of common phrases is greater than some threshold, sorted by the number of 
+common phrases.
 
 This is a modified version of the problem originally used at the University of Chicago and presented as 
 a Nifty Assignment at SIGCSE 2008 (http://nifty.stanford.edu/2008/franke-catch-plagiarists/)
